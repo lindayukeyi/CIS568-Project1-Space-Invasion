@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Alien1 : MonoBehaviour
+public class AlienSpecial : MonoBehaviour
 {
-    float PointsPerAlien1 = 10.0f;
+    float MoveUnitPerSecond = 2.0f;
+    float PointsPerAlienSpecial = 50.0f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -15,7 +17,23 @@ public class Alien1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.position += new Vector3(MoveUnitPerSecond * Time.deltaTime, 0.0f, 0.0f);
+
+        if (Screen.width <= Camera.main.WorldToScreenPoint(transform.position).x)
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject);
+    }
+
+    void OnBecameInvisible()
+    {
+        Die();
+        print("Destroy AlienSpecial");
     }
 
     void OnCollisionEnter(Collision collision)
@@ -27,13 +45,11 @@ public class Alien1 : MonoBehaviour
         {
             GameObject obj = GameObject.FindWithTag("GlobalObject");
             Global g = obj.GetComponent<Global>();
-            g.score += PointsPerAlien1;
+            g.score += PointsPerAlienSpecial;
 
             LaserFromShip ls =
             collider.gameObject.GetComponent<LaserFromShip>();
-            // let the other object handle its own death throes
             ls.Die();
-            // Destroy the Bullet which collided with the Asteroid
             Destroy(gameObject);
         }
         else
@@ -43,9 +59,4 @@ public class Alien1 : MonoBehaviour
             Debug.Log("Collided with " + collider.tag);
         }
     }
-
-    public void Die()
-    {
-        Destroy(gameObject);
-    }
-    }
+}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LaserFromShip : MonoBehaviour
 {
-    float MoveUnitPerSecond = 1.0f;
+    float MoveUnitPerSecond = 10.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,14 +14,13 @@ public class LaserFromShip : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.position += new Vector3(0.0f, 0.0f, MoveUnitPerSecond * Time.deltaTime);
+        if(Screen.height  <= Camera.main.WorldToScreenPoint(transform.position).z)
+        {
+            Die();
+        }
     }
 
-    void FixedUpdate()
-    {
-        transform.position += new Vector3(0.0f, 0.0f, MoveUnitPerSecond * Time.deltaTime);
-        
-    }
 
     public void Die()
     {
@@ -32,5 +31,6 @@ public class LaserFromShip : MonoBehaviour
     {
         Die();
     }
+
 
 }

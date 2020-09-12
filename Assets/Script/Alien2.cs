@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Alien1 : MonoBehaviour
+public class Alien2 : MonoBehaviour
 {
-    float PointsPerAlien1 = 10.0f;
+    float PointsPerAlien1 = 20.0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void OnCollisionEnter(Collision collision)
@@ -48,4 +48,4 @@ public class Alien1 : MonoBehaviour
     {
         Destroy(gameObject);
     }
-    }
+}

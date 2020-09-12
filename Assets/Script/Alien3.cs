@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Alien1 : MonoBehaviour
+public class Alien3 : MonoBehaviour
 {
-    float PointsPerAlien1 = 10.0f;
+    float PointsPerAlien3 = 30.0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void OnCollisionEnter(Collision collision)
@@ -27,7 +27,7 @@ public class Alien1 : MonoBehaviour
         {
             GameObject obj = GameObject.FindWithTag("GlobalObject");
             Global g = obj.GetComponent<Global>();
-            g.score += PointsPerAlien1;
+            g.score += PointsPerAlien3;
 
             LaserFromShip ls =
             collider.gameObject.GetComponent<LaserFromShip>();
@@ -48,4 +48,4 @@ public class Alien1 : MonoBehaviour
     {
         Destroy(gameObject);
     }
-    }
+}
