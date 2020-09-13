@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Global : MonoBehaviour
 {
@@ -68,6 +69,7 @@ public class Global : MonoBehaviour
             print("Game Over!!!!");
             GameOver();
             isGameover = true;
+            StartCoroutine(GameOverCoroutine());
             return;
         }
 
@@ -90,7 +92,9 @@ public class Global : MonoBehaviour
         {
             timerOfLaserFromAlien = 0;
             float x = Random.Range(-7.5f, 7.5f);
-            Vector3 pos = new Vector3(x, 0.0f, 0.2f) + worldPos;
+            GameObject obj = GameObject.FindWithTag("Alien1");
+            float z = obj.transform.position.z;
+            Vector3 pos = new Vector3(x, 0.0f, z - 2.0f) + worldPos;
             Instantiate(LaserFromAlien, pos, Quaternion.identity);
         }
 
@@ -183,6 +187,20 @@ public class Global : MonoBehaviour
 
     private void CreateBunkers()
     {
+
+    }
+
+    IEnumerator GameOverCoroutine()
+    {
+        //Print the time of when the function is first called.
+        Debug.Log("Started Coroutine at timestamp : " + Time.time);
+
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        yield return new WaitForSeconds(2);
+
+        //After we have waited 5 seconds print the time again.
+        Debug.Log("Finished Coroutine at timestamp : " + Time.time);
+        SceneManager.LoadScene(0);
 
     }
 }

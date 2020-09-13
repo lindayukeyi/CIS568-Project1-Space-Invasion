@@ -6,6 +6,13 @@ TagManager:
   tags:
   - LaserFromShip
   - Alien1
+  - Alien2
+  - Alien3
+  - AlienSpecial
+  - GlobalObject
+  - LaserFromAlien
+  - Ship
+  - Gameover
   layers:
   - Default
   - TransparentFX
