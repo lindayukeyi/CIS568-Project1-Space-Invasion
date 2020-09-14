@@ -5,10 +5,12 @@ using UnityEngine;
 public class LaserFromAlien : MonoBehaviour
 {
     float MoveUnitPerSecond = -10.0f;
+
+    public AudioClip explosion;
+
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame
@@ -42,6 +44,7 @@ public class LaserFromAlien : MonoBehaviour
             GameObject obj = GameObject.FindWithTag("GlobalObject");
             Global g = obj.GetComponent<Global>();
             g.lives--;
+            AudioSource.PlayClipAtPoint(explosion, gameObject.transform.position);
 
             Destroy(gameObject);
         }

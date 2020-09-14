@@ -4,18 +4,30 @@ using UnityEngine;
 
 public class Alien2 : MonoBehaviour
 {
-    float PointsPerAlien1 = 20.0f;
+
+    float PointsPerAlien2 = 20.0f;
+    float MoveEachTime = 1.0f;
+    float MovePeriod = 5;
+    float timer;
+    Global g;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        GameObject obj = GameObject.Find("GlobalObject");
+        Global g = obj.GetComponent<Global>();
+        MovePeriod -= (float)g.level * 0.2f;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        timer += Time.deltaTime;
+        if (timer > MovePeriod)
+        {
+            timer = 0;
+            transform.position += new Vector3(0.0f, 0.0f, -MoveEachTime);
+        }
     }
 
     void OnCollisionEnter(Collision collision)
@@ -27,7 +39,7 @@ public class Alien2 : MonoBehaviour
         {
             GameObject obj = GameObject.FindWithTag("GlobalObject");
             Global g = obj.GetComponent<Global>();
-            g.score += PointsPerAlien1;
+            g.score += PointsPerAlien2;
 
             LaserFromShip ls =
             collider.gameObject.GetComponent<LaserFromShip>();

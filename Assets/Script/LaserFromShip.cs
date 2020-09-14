@@ -5,6 +5,8 @@ using UnityEngine;
 public class LaserFromShip : MonoBehaviour
 {
     float MoveUnitPerSecond = 10.0f;
+    public AudioClip explosion;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +26,7 @@ public class LaserFromShip : MonoBehaviour
 
     public void Die()
     {
+        AudioSource.PlayClipAtPoint(explosion, gameObject.transform.position);
         Destroy(gameObject);
     }
 

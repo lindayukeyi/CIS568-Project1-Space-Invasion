@@ -7,6 +7,8 @@ public class Ship : MonoBehaviour
     [SerializeField]
     GameObject laser;
 
+    public AudioClip shoot;
+
     float MoveUnitPerSecond = 3.0f;
     Vector3 AlienStartPos = new Vector3(-2.0f, 0.0f, 2f);
 
@@ -37,6 +39,7 @@ public class Ship : MonoBehaviour
 
         if(GameObject.FindWithTag("LaserFromShip") == null && Input.GetAxisRaw("shoot") > 0)
         {
+            AudioSource.PlayClipAtPoint(shoot, gameObject.transform.position);
             Instantiate(laser, transform.position + new Vector3(0.0f, 0.0f, 1.0f), Quaternion.identity);
         }
     }
