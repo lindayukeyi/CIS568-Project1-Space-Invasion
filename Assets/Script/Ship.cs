@@ -7,21 +7,24 @@ public class Ship : MonoBehaviour
     [SerializeField]
     GameObject laser;
 
+    public Camera thirdviewCamera;
+
     public AudioClip shoot;
 
     float MoveUnitPerSecond = 3.0f;
     Vector3 AlienStartPos = new Vector3(-2.0f, 0.0f, 2f);
+    int viewMode;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        viewMode = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        switchCamera();
     }
 
     void FixedUpdate()
@@ -47,5 +50,22 @@ public class Ship : MonoBehaviour
     public void Die()
     {
         Destroy(gameObject);
+    }
+
+    public void switchCamera()
+    {
+        Camera firstviewCamera = gameObject.GetComponent<Camera>();
+        if (viewMode == 1 || Input.GetAxisRaw("firstview") > 0)
+        {
+            viewMode = 1;
+            firstviewCamera.enabled = true;
+            thirdviewCamera.enabled = false;
+        }
+        if(viewMode == 0 || Input.GetAxisRaw("thirdview") > 0)
+        {
+            viewMode = 0;
+            firstviewCamera.enabled = false;
+            thirdviewCamera.enabled = true;
+        }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class Alien1 : MonoBehaviour
@@ -21,6 +23,14 @@ public class Alien1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // check whether enter the bottom
+        print(transform.position.z);
+        if(-3.0f > transform.position.z)
+        {
+            g.isGameover = true;
+            return;
+        }
+
         timer += Time.deltaTime;
         if(timer > MovePeriod)
         {

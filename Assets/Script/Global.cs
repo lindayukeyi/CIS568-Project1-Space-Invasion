@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -39,6 +40,7 @@ public class Global : MonoBehaviour
     public float timerOfSpercialAlien;
     public float timerOfLaserFromAlien;
     public Vector3 originInScreenCoords;
+    public Vector3 shipPos;
 
 
     // Start is called before the first frame update
@@ -54,9 +56,7 @@ public class Global : MonoBehaviour
         worldPos = Camera.main.ScreenToWorldPoint(new Vector3((float)Screen.width / 2f, 
                                                             (float)Screen.height / 2f, 
                                                             originInScreenCoords.z));
-        print(Screen.width);
-        print(Screen.height);
-
+        shipPos = worldPos;
         RestartGame();
     }
 
@@ -64,7 +64,7 @@ public class Global : MonoBehaviour
     void Update()
     {
         // Check whether game over
-        if(lives <= 0)
+        if(isGameover || lives <= 0)
         {
             print("Game Over!!!!");
             GameOver();
@@ -75,6 +75,7 @@ public class Global : MonoBehaviour
 
         timerOfSpercialAlien += Time.deltaTime;
         timerOfLaserFromAlien += Time.deltaTime;
+
 
         // Randomly laucn a special red alien
         if (timerOfSpercialAlien >= TimeToSpawnSpecialAlien)
@@ -123,7 +124,8 @@ public class Global : MonoBehaviour
     private void CreateShip()
     {
         // Create a new ship
-        Instantiate(ship, worldPos + new Vector3(0.0f, 0.0f, -6.0f), Quaternion.identity);
+        shipPos = worldPos + new Vector3(0.0f, 0.0f, -6.0f);
+        Instantiate(ship, shipPos, Quaternion.identity);
     }
 
     private void CreateAliens()
@@ -203,4 +205,5 @@ public class Global : MonoBehaviour
         SceneManager.LoadScene(0);
 
     }
+
 }
