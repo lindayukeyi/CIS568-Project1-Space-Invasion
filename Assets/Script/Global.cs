@@ -26,6 +26,9 @@ public class Global : MonoBehaviour
     [SerializeField]
     GameObject gameover;
 
+    [SerializeField]
+    GameObject bunker;
+
     private int InitalLives = 1; // # of lives at the beginning
     public float TimeToSpawnSpecialAlien = 5;
     public float TimeToSpawnLaserFromAlien = 1;
@@ -34,7 +37,7 @@ public class Global : MonoBehaviour
     public int level; // Denote the level of each scene
     public int lives; // Denote the remaing lives of the player
     public float score; // Denote the points of the player get
-    public bool isGameover;
+    public bool isGameover = false;
 
     Vector3 worldPos;
     public float timerOfSpercialAlien;
@@ -64,7 +67,7 @@ public class Global : MonoBehaviour
     void Update()
     {
         // Check whether game over
-        if(isGameover || lives <= 0)
+        if(isGameover || lives <= 0.0f)
         {
             print("Game Over!!!!");
             GameOver();
@@ -189,7 +192,12 @@ public class Global : MonoBehaviour
 
     private void CreateBunkers()
     {
-
+        for(float x = -6.0f; x <= 6.0f; x += 4.0f)
+        {
+            Instantiate(bunker, worldPos + new Vector3(x, 0.0f, -3.0f), Quaternion.identity);
+            Instantiate(bunker, worldPos + new Vector3(x - 0.5f, 0.0f, -4.0f), Quaternion.identity);
+            Instantiate(bunker, worldPos + new Vector3(x + 1.0f, 0.0f, -4.0f), Quaternion.identity);
+        }
     }
 
     IEnumerator GameOverCoroutine()

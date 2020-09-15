@@ -7,35 +7,50 @@ using UnityEngine;
 public class Alien1 : MonoBehaviour
 {
     float PointsPerAlien1 = 10.0f;
-    float MoveEachTime = 1.0f;
-    float MovePeriod = 5;
-    float timer;
+    float MoveVerticallySpeed = 1.0f;
+    float MoveHorizontallySpeed = 1.0f;
+    float MoveVerticallyPeriod = 10;
+    float MoveHorizontalPeriod = 1.0f;
+    float timerOfVertical;
+    float timerOfHorizon;
+
     Global g;
 
     // Start is called before the first frame update
     void Start()
     {
         GameObject obj = GameObject.Find("GlobalObject");
-        Global g = obj.GetComponent<Global>();
-        MovePeriod -= (float)g.level * 0.2f;
+        g = obj.GetComponent<Global>();
+        MoveVerticallyPeriod -= (float)g.level * 0.2f;
     }
 
     // Update is called once per frame
     void Update()
     {
         // check whether enter the bottom
+
         print(transform.position.z);
-        if(-3.0f > transform.position.z)
+        if(-5.0f > transform.position.z)
         {
+            print("bottom");
             g.isGameover = true;
-            return;
         }
 
-        timer += Time.deltaTime;
-        if(timer > MovePeriod)
+        timerOfVertical += Time.deltaTime;
+        timerOfHorizon += Time.deltaTime;
+
+        if (timerOfVertical > MoveVerticallyPeriod)
         {
-            timer = 0;
-            transform.position += new Vector3(0.0f, 0.0f, -MoveEachTime);
+            timerOfVertical = 0;
+            transform.position += new Vector3(0.0f, 0.0f, -MoveVerticallySpeed);
+            MoveVerticallySpeed += 0.5f;
+            //MoveVerticallyPeriod -= 1.0f;
+            MoveHorizontallySpeed *= -1.0f;
+        }
+        if(timerOfHorizon > MoveHorizontalPeriod)
+        {
+            timerOfHorizon = 0;
+            transform.position += new Vector3(MoveHorizontallySpeed, 0.0f, 0.0f);
         }
     }
 
@@ -46,8 +61,6 @@ public class Alien1 : MonoBehaviour
         Collider collider = collision.collider;
         if (collider.CompareTag("LaserFromShip"))
         {
-            GameObject obj = GameObject.FindWithTag("GlobalObject");
-            Global g = obj.GetComponent<Global>();
             g.score += PointsPerAlien1;
 
             LaserFromShip ls =
