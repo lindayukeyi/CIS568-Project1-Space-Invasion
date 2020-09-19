@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
@@ -14,6 +15,8 @@ public class Alien1 : MonoBehaviour
     float timerOfVertical;
     float timerOfHorizon;
 
+    public GameObject alien1die;
+    public GameObject bulletdie;
     Global g;
 
     // Start is called before the first frame update
@@ -29,7 +32,7 @@ public class Alien1 : MonoBehaviour
     {
         // check whether enter the bottom
 
-        print(transform.position.z);
+
         if(-5.0f > transform.position.z)
         {
             print("bottom");
@@ -38,7 +41,7 @@ public class Alien1 : MonoBehaviour
 
         timerOfVertical += Time.deltaTime;
         timerOfHorizon += Time.deltaTime;
-
+        
         if (timerOfVertical > MoveVerticallyPeriod)
         {
             timerOfVertical = 0;
@@ -47,13 +50,17 @@ public class Alien1 : MonoBehaviour
             //MoveVerticallyPeriod -= 1.0f;
             MoveHorizontallySpeed *= -1.0f;
         }
+        
+        /*
         if(timerOfHorizon > MoveHorizontalPeriod)
         {
             timerOfHorizon = 0;
             transform.position += new Vector3(MoveHorizontallySpeed, 0.0f, 0.0f);
         }
+        */
     }
 
+    
     void OnCollisionEnter(Collision collision)
     {
         // the Collision contains a lot of info, but it’s the colliding
@@ -68,13 +75,21 @@ public class Alien1 : MonoBehaviour
             // let the other object handle its own death throes
             ls.Die();
             // Destroy the Bullet which collided with the Asteroid
+            Rigidbody rigidbodyOld = gameObject.GetComponent<Rigidbody>();
+            Vector3 vel = rigidbodyOld.velocity;
+            Vector3 pos = transform.position;
             Destroy(gameObject);
+            GameObject obj =  Instantiate(alien1die, pos, Quaternion.identity);
+            Rigidbody rb = obj.GetComponent<Rigidbody>();
+            rb.velocity = new Vector3(0.0F, 0.0f, 10.0f);
+
+            //rigidbody.AddRelativeForce(new Vector3(0.0f,0.0f, 0.0f));
         }
         else
         {
             // if we collided with something else, print to console
             // what the other thing was
-            Debug.Log("Collided with " + collider.tag);
+            Debug.Log("Collide with alien1");
         }
     }
 

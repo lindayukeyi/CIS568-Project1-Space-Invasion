@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4809459139391915646}
   - component: {fileID: 7061096778345427857}
   - component: {fileID: -5371494359859206026}
+  - component: {fileID: 4481196152578294777}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Ship
@@ -89,7 +90,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 162101526613672761}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 8e464404aa5e95c458a668e68bbe18cf, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -154,3 +155,19 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!54 &4481196152578294777
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162101526613672761}
+  serializedVersion: 2
+  m_Mass: 100
+  m_Drag: 50
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

@@ -5,12 +5,15 @@ using UnityEngine;
 public class LaserFromAlien : MonoBehaviour
 {
     float MoveUnitPerSecond = -10.0f;
+    public GameObject laserDie;
+    public GameObject explosionPrefab;
 
     public AudioClip explosion;
 
     // Start is called before the first frame update
     void Start()
     {
+
     }
 
     // Update is called once per frame
@@ -47,12 +50,19 @@ public class LaserFromAlien : MonoBehaviour
             AudioSource.PlayClipAtPoint(explosion, gameObject.transform.position);
 
             Destroy(gameObject);
+
+            Ship s = collider.GetComponent<Ship>();
+            Vector3 pos = collider.transform.position;
+            s.Die();
+            Instantiate(explosionPrefab, pos, Quaternion.identity);
         }
-        else
+        else if(collider.CompareTag("Board"))
         {
             // if we collided with something else, print to console
             // what the other thing was
-            Debug.Log("Collided with " + collider.tag);
+            Vector3 pos = transform.position;
+            Destroy(gameObject);
+            Instantiate(laserDie, pos, Quaternion.identity);
         }
     }
 

@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class LaserFromShip : MonoBehaviour
 {
-    float MoveUnitPerSecond = 10.0f;
+    public float MoveUnitPerSecond = 10.0f;
     public AudioClip explosion;
+
+    public GameObject aliendie;
+    public GameObject bulletdie;
 
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -34,6 +36,17 @@ public class LaserFromShip : MonoBehaviour
     {
         Die();
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Collider collider = collision.collider;
+        if(collider.CompareTag("Aliendie")) {
+            Vector3 pos = transform.position;
+            Destroy(gameObject);
+            Instantiate(bulletdie, pos, Quaternion.identity);
+        }
+    }
+
 
 
 }

@@ -14,10 +14,13 @@ public class Ship : MonoBehaviour
     float MoveUnitPerSecond = 3.0f;
     Vector3 AlienStartPos = new Vector3(-2.0f, 0.0f, 2f);
     int viewMode;
+    float bulletSpeed;
+    float BulletSpeedRaw = 10.0f;
 
     // Start is called before the first frame update
     void Start()
     {
+        bulletSpeed = BulletSpeedRaw;
         viewMode = 0;
     }
 
@@ -43,8 +46,11 @@ public class Ship : MonoBehaviour
         if(GameObject.FindWithTag("LaserFromShip") == null && Input.GetAxisRaw("shoot") > 0)
         {
             AudioSource.PlayClipAtPoint(shoot, gameObject.transform.position);
-            Instantiate(laser, transform.position + new Vector3(0.0f, 0.0f, 1.0f), Quaternion.identity);
+            GameObject obj = Instantiate(laser, transform.position + new Vector3(0.0f, 0.0f, 1.0f), Quaternion.identity);
+            LaserFromShip ls =  obj.GetComponent<LaserFromShip>();
+            ls.MoveUnitPerSecond = bulletSpeed;
         }
+
     }
 
     public void Die()
@@ -67,5 +73,19 @@ public class Ship : MonoBehaviour
             firstviewCamera.enabled = false;
             thirdviewCamera.enabled = true;
         }
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        Collider collider = collision.collider;
+        if (collider.CompareTag("Aliendie"))
+        {
+            bulletSpeed = 5.0f;
+        }
+    }
+
+    public void OnCollisionExit(Collision collision)
+    {
+        bulletSpeed = BulletSpeedRaw;
     }
 }

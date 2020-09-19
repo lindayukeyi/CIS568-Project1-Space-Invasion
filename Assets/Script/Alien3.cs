@@ -29,7 +29,7 @@ public class Alien3 : MonoBehaviour
     {
         // check whether enter the bottom
 
-        print(transform.position.z);
+
         if (-5.0f > transform.position.z)
         {
             print("bottom");
@@ -47,11 +47,12 @@ public class Alien3 : MonoBehaviour
             //MoveVerticallyPeriod -= 1.0f;
             MoveHorizontallySpeed *= -1.0f;
         }
+        /*
         if (timerOfHorizon > MoveHorizontalPeriod)
         {
             timerOfHorizon = 0;
             transform.position += new Vector3(MoveHorizontallySpeed, 0.0f, 0.0f);
-        }
+        }*/
     }
 
     void OnCollisionEnter(Collision collision)

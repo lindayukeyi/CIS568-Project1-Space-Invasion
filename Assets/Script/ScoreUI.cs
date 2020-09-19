@@ -17,6 +17,14 @@ public class ScoreUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(globalObj.isBossDie)
+        {
+            scoreText.color = Color.red;
+        }
+        else
+        {
+            scoreText.color = Color.black;
+        }
         scoreText.text = globalObj.score.ToString();
     }
 
