@@ -10,7 +10,7 @@ public class Alien1 : MonoBehaviour
     float PointsPerAlien1 = 10.0f;
     float MoveVerticallySpeed = 1.0f;
     float MoveHorizontallySpeed = 1.0f;
-    float MoveVerticallyPeriod = 10;
+    float MoveVerticallyPeriod = 20;
     float MoveHorizontalPeriod = 1.0f;
     float timerOfVertical;
     float timerOfHorizon;

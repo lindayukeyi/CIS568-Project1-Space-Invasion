@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TitleScript : MonoBehaviour
 {
@@ -8,28 +10,29 @@ public class TitleScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        GameObject start = GameObject.Find("StartButton");
+        GameObject exit = GameObject.Find("ExitButton");
+
+        Button startButton = start.GetComponent<Button>();
+        Button ExitButton = exit.GetComponent<Button>();
+
+        startButton.onClick.AddListener(StartOnClick);
+        ExitButton.onClick.AddListener(ExitOnClick);
+
     }
     // Update is called once per frame
     void Update()
     {
     }
-    void OnGUI()
+
+    void StartOnClick()
     {
-        GUILayout.BeginArea(new Rect(10, Screen.height / 2 + 100,
-        Screen.width - 10, 200));
-        // Load the main scene
-        // The scene needs to be added into build setting to be loaded!
-        if (GUILayout.Button("New Game"))
-        {
-            Application.LoadLevel("LevelScene");
-        }
-
-        if (GUILayout.Button("Exit"))
-        {
-            Application.Quit();
-            Debug.Log("Application.Quit() only works in build,not in editor");
-        }
-
-        GUILayout.EndArea();
+        SceneManager.LoadScene(1);
     }
-}
+
+    void ExitOnClick()
+    {
+        Application.Quit();
+    }
+}
+

@@ -264,7 +264,7 @@ public class Global : MonoBehaviour
     // Creat the boss
     private void CreateBoss()
     {
-        Instantiate(boss, new Vector3(0.0f, 0.0f, 6.0f), Quaternion.identity);
+        Instantiate(boss, new Vector3(0.0f, -2.0f, 6.0f), Quaternion.identity);
     }
 
 }

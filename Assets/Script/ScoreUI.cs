@@ -23,7 +23,7 @@ public class ScoreUI : MonoBehaviour
         }
         else
         {
-            scoreText.color = Color.black;
+            scoreText.color = Color.white;
         }
         scoreText.text = globalObj.score.ToString();
     }

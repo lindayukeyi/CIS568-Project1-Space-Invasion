@@ -52,11 +52,11 @@ public class Ship : MonoBehaviour
         if(Input.GetAxisRaw("Horizontal") > 0)
         {
             
-            transform.position += new Vector3(MoveUnitPerSecond * Time.deltaTime, 0.0f, 0.0f);
+            transform.position += new Vector3(MoveUnitPerSecond * 10 * Time.deltaTime, 0.0f, 0.0f);
         }
         else if(Input.GetAxisRaw("Horizontal") < 0)
         {
-            transform.position -= new Vector3(MoveUnitPerSecond * Time.deltaTime, 0.0f, 0.0f);
+            transform.position -= new Vector3(MoveUnitPerSecond * 10 * Time.deltaTime, 0.0f, 0.0f);
         }
 
 

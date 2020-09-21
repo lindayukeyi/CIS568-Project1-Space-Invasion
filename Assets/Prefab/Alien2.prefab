@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alien1: {fileID: 1767326142823959418, guid: 7603d8adf079dcb4587aa06224e16ff6, type: 3}
-  aliendie: {fileID: 2797693168293249160, guid: bd0bd5f9d805cc542a149cab0f77af3e,
+  aliendie: {fileID: 3832421206021616145, guid: 775e8559ec51c084cb54f4e053405f51,
     type: 3}
 --- !u!1001 &5121867351486435744
 PrefabInstance:
@@ -42,6 +42,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Alien2
       objectReference: {fileID: 0}
+    - target: {fileID: 4159041235500020708, guid: 7603d8adf079dcb4587aa06224e16ff6,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4159041235500020708, guid: 7603d8adf079dcb4587aa06224e16ff6,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4838745468459613464, guid: 7603d8adf079dcb4587aa06224e16ff6,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: 9fb945c7f96dd104692c2818ff771960, type: 3}
     - target: {fileID: 5697587197325123047, guid: 7603d8adf079dcb4587aa06224e16ff6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -55,7 +70,7 @@ PrefabInstance:
     - target: {fileID: 5697587197325123047, guid: 7603d8adf079dcb4587aa06224e16ff6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.217
       objectReference: {fileID: 0}
     - target: {fileID: 5697587197325123047, guid: 7603d8adf079dcb4587aa06224e16ff6,
         type: 3}

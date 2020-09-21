@@ -19,16 +19,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6886649223329979098, guid: e12469084fd9e0d4bb94164e20be2b16,
+    - target: {fileID: 302350741724851384, guid: e12469084fd9e0d4bb94164e20be2b16,
         type: 3}
-      propertyPath: m_Name
-      value: Alien3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6886649223329979098, guid: e12469084fd9e0d4bb94164e20be2b16,
-        type: 3}
-      propertyPath: m_TagString
-      value: Alien3
-      objectReference: {fileID: 0}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: bfd8050d9a207f646a71e823c296d984, type: 3}
     - target: {fileID: 577976318577445959, guid: e12469084fd9e0d4bb94164e20be2b16,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -83,6 +78,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6886649223329979098, guid: e12469084fd9e0d4bb94164e20be2b16,
+        type: 3}
+      propertyPath: m_Name
+      value: Alien3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6886649223329979098, guid: e12469084fd9e0d4bb94164e20be2b16,
+        type: 3}
+      propertyPath: m_TagString
+      value: Alien3
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114789177895337570, guid: e12469084fd9e0d4bb94164e20be2b16, type: 3}

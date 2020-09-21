@@ -56,11 +56,12 @@ public class LaserFromAlien : MonoBehaviour
             s.Die();
             Instantiate(explosionPrefab, pos, Quaternion.identity);
         }
-        else if(collider.CompareTag("Board"))
+        else if(collider.CompareTag("Board") || collider.CompareTag("Aliendie"))
         {
             // if we collided with something else, print to console
             // what the other thing was
             Vector3 pos = transform.position;
+            pos.z = -6.5f;
             Destroy(gameObject);
             Instantiate(laserDie, pos, Quaternion.identity);
         }
