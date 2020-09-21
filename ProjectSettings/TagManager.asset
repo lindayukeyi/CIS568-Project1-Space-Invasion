@@ -17,6 +17,9 @@ TagManager:
   - LaserFromAlienDie
   - Board
   - Boss
+  - Left
+  - Right
+  - Bullet
   layers:
   - Default
   - TransparentFX
