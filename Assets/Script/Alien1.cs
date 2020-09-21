@@ -10,7 +10,7 @@ public class Alien1 : MonoBehaviour
     float PointsPerAlien1 = 10.0f;
     float MoveVerticallySpeed = 1.0f;
     float MoveHorizontallySpeed = 1.0f;
-    float MoveVerticallyPeriod = 20;
+    float MoveVerticallyPeriod = 7;
     float MoveHorizontalPeriod = 1.0f;
     float timerOfVertical;
     float timerOfHorizon;
@@ -45,19 +45,19 @@ public class Alien1 : MonoBehaviour
         if (timerOfVertical > MoveVerticallyPeriod)
         {
             timerOfVertical = 0;
-            transform.position += new Vector3(0.0f, 0.0f, -MoveVerticallySpeed);
-            MoveVerticallySpeed += 0.5f;
+            //transform.position += new Vector3(0.0f, 0.0f, -MoveVerticallySpeed);
+            //MoveVerticallySpeed += 0.5f;
             //MoveVerticallyPeriod -= 1.0f;
             MoveHorizontallySpeed *= -1.0f;
         }
         
-        /*
+        
         if(timerOfHorizon > MoveHorizontalPeriod)
         {
             timerOfHorizon = 0;
             transform.position += new Vector3(MoveHorizontallySpeed, 0.0f, 0.0f);
         }
-        */
+        
     }
 
     
@@ -74,7 +74,10 @@ public class Alien1 : MonoBehaviour
             collider.gameObject.GetComponent<LaserFromShip>();
             // let the other object handle its own death throes
             ls.Die();
+            Rigidbody rb = gameObject.GetComponent<Rigidbody>();
+            rb.velocity = new Vector3(0.0F, 0.0f, 10.0f);
             // Destroy the Bullet which collided with the Asteroid
+            /*
             Rigidbody rigidbodyOld = gameObject.GetComponent<Rigidbody>();
             Vector3 vel = rigidbodyOld.velocity;
             Vector3 pos = transform.position;
@@ -82,13 +85,16 @@ public class Alien1 : MonoBehaviour
             GameObject obj =  Instantiate(alien1die, pos, Quaternion.identity);
             Rigidbody rb = obj.GetComponent<Rigidbody>();
             rb.velocity = new Vector3(0.0F, 0.0f, 10.0f);
-
+            */
             //rigidbody.AddRelativeForce(new Vector3(0.0f,0.0f, 0.0f));
         }
-        else
+        else if(collider.CompareTag("Alien2") || collider.CompareTag("Alien3"))
         {
             // if we collided with something else, print to console
             // what the other thing was
+            Vector3 pos = transform.position;
+            Destroy(gameObject);
+            GameObject obj = Instantiate(alien1die, pos, Quaternion.identity);
             Debug.Log("Collide with alien1");
         }
     }

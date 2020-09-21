@@ -6,6 +6,10 @@ using UnityEngine.Analytics;
 public class Boss : MonoBehaviour
 {
     public GameObject bullet;
+    public AudioClip ubSound;
+    public AudioClip bonusSound;
+
+    AudioSource bossSound;
 
     public float life = 20.0f;
     public float hp;
@@ -19,6 +23,8 @@ public class Boss : MonoBehaviour
     {
         hp = 0;
         timer = 0.0f;
+        bossSound = GetComponent<AudioSource>();
+        bossSound.Play();
     }
 
     // Update is called once per frame
@@ -51,14 +57,16 @@ public class Boss : MonoBehaviour
         if(gameObject != null &&  timer >= BulletPeriod)
         {
             timer = 0.0f;
-            Instantiate(bullet, transform.position + new Vector3(0.0f, 0.0f, -4.0f), Quaternion.identity);
+            Instantiate(bullet,  new Vector3(transform.position.x, 0.0f, transform.position .z - 4.0f), Quaternion.identity);
         }
 
     }
 
     public void Die()
     {
+        bossSound.Stop();
         Destroy(gameObject);
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -75,9 +83,10 @@ public class Boss : MonoBehaviour
 
     private void UB()
     {
+        AudioSource.PlayClipAtPoint(ubSound, gameObject.transform.position);
         for (float x = -3.0f; x <= 3.0; x += 2.5f)
         {
-            Instantiate(bullet, transform.position + new Vector3(x, 0.0f, -4.0f), Quaternion.identity);
+            Instantiate(bullet,  new Vector3(transform.position.x + x, 0.0f, transform.position .z - 4.0f), Quaternion.identity);
         }
     }
 }

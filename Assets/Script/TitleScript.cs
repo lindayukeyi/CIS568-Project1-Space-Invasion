@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class TitleScript : MonoBehaviour
 {
-    private GUIStyle buttonStyle;
+    public AudioClip bgm;
+
     // Use this for initialization
     void Start()
     {
@@ -18,6 +19,7 @@ public class TitleScript : MonoBehaviour
 
         startButton.onClick.AddListener(StartOnClick);
         ExitButton.onClick.AddListener(ExitOnClick);
+        AudioSource.PlayClipAtPoint(bgm, Camera.main.transform.position, 10f);
 
     }
     // Update is called once per frame

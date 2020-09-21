@@ -6,10 +6,10 @@ using UnityEngine;
 
 public class Alien3 : MonoBehaviour
 {
-    float PointsPerAlien1 = 10.0f;
+    float PointsPerAlien1 = 30.0f;
     float MoveVerticallySpeed = 1.0f;
     float MoveHorizontallySpeed = 1.0f;
-    float MoveVerticallyPeriod = 20;
+    float MoveVerticallyPeriod = 7;
     float MoveHorizontalPeriod = 1.0f;
     float timerOfVertical;
     float timerOfHorizon;
@@ -42,17 +42,17 @@ public class Alien3 : MonoBehaviour
         if (timerOfVertical > MoveVerticallyPeriod)
         {
             timerOfVertical = 0;
-            transform.position += new Vector3(0.0f, 0.0f, -MoveVerticallySpeed);
-            MoveVerticallySpeed += 0.5f;
+            //transform.position += new Vector3(0.0f, 0.0f, -MoveVerticallySpeed);
+            //MoveVerticallySpeed += 0.5f;
             //MoveVerticallyPeriod -= 1.0f;
             MoveHorizontallySpeed *= -1.0f;
         }
-        /*
+        
         if (timerOfHorizon > MoveHorizontalPeriod)
         {
             timerOfHorizon = 0;
             transform.position += new Vector3(MoveHorizontallySpeed, 0.0f, 0.0f);
-        }*/
+        }
     }
 
     void OnCollisionEnter(Collision collision)

@@ -33,6 +33,12 @@ public class Global : MonoBehaviour
 
     public GameObject boss;
 
+    public GameObject box;
+    public GameObject bonusLife;
+    public GameObject bounsCoin;
+
+    AudioSource bgm;
+
     private int InitalLives = 3; // # of lives at the beginning
     public float TimeToSpawnSpecialAlien = 5;
     public float TimeToSpawnLaserFromAlien = 1;
@@ -68,6 +74,7 @@ public class Global : MonoBehaviour
                                                             originInScreenCoords.z));
         shipPos = worldPos;
         displayTime = 0.0f;
+        bgm = GetComponent<AudioSource>();
         RestartGame();
     }
 
@@ -126,6 +133,7 @@ public class Global : MonoBehaviour
         if(isBeatBoss && GameObject.FindWithTag("Boss") == null)
         {
             isBossDie = true;
+            showBonusScene();
             print("Boss die");
             lives++; // Every new level will be assigned one more life
             level++; // More difficult when level up
@@ -141,7 +149,8 @@ public class Global : MonoBehaviour
             if(displayTime >= 5)
             {
                 displayTime = 0.0f;
-                isBossDie = false;
+                isBossDie = false; 
+                removeBonus();
             }
         }
 
@@ -151,8 +160,8 @@ public class Global : MonoBehaviour
     // Restart the game
     private void RestartGame()
     {
+        bgm.Play();
         isBeatBoss = false;
-        //isBossDie = false;
         CreateShip();
         CreateAliens();
        // CreateBunkers();
@@ -249,22 +258,30 @@ public class Global : MonoBehaviour
 
     }
 
-    IEnumerator BonusCoroutine()
-    {
-        //Print the time of when the function is first called.
-        Debug.Log("Started Coroutine at timestamp : " + Time.time);
-
-        //yield on a new YieldInstruction that waits for 5 seconds.
-        yield return new WaitForSeconds(2);
-
-        //After we have waited 5 seconds print the time again.
-        Debug.Log("Finished Coroutine at timestamp : " + Time.time);
-    }
 
     // Creat the boss
     private void CreateBoss()
     {
+        bgm.Stop();
         Instantiate(boss, new Vector3(0.0f, -2.0f, 6.0f), Quaternion.identity);
+    }
+
+    private void removeBonus()
+    {
+        GameObject b1 = GameObject.FindWithTag("box");
+        GameObject b2 = GameObject.FindWithTag("bonusCoin");
+        GameObject b3 = GameObject.FindWithTag("bonusLife");
+
+        Destroy(b1);
+        Destroy(b2);
+        Destroy(b3);
+    }
+    private void showBonusScene()
+    {
+        Instantiate(box, worldPos, Quaternion.identity);
+        Instantiate(bonusLife, worldPos + new Vector3(-1.0f, 0.0f, 0.0f), Quaternion.identity);
+        Instantiate(bounsCoin, worldPos + new Vector3(1.0f, 0.0f, 0.0f), Quaternion.identity);
+        print("createBounus");
     }
 
 }
