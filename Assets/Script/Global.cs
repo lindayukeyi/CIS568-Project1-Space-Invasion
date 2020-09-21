@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Global : MonoBehaviour
 {
@@ -58,6 +59,7 @@ public class Global : MonoBehaviour
     bool isBeatBoss;
     float displayTime;
 
+    Button exit;
 
     // Start is called before the first frame update
     void Start()
@@ -75,6 +77,9 @@ public class Global : MonoBehaviour
         shipPos = worldPos;
         displayTime = 0.0f;
         bgm = GetComponent<AudioSource>();
+        exit = GameObject.Find("ExitButton").GetComponent<Button>();
+        exit.onClick.AddListener(ExitOnClick);
+
         RestartGame();
     }
 
@@ -282,6 +287,11 @@ public class Global : MonoBehaviour
         Instantiate(bonusLife, worldPos + new Vector3(-1.0f, 0.0f, 0.0f), Quaternion.identity);
         Instantiate(bounsCoin, worldPos + new Vector3(1.0f, 0.0f, 0.0f), Quaternion.identity);
         print("createBounus");
+    }
+
+    private void ExitOnClick()
+    {
+        Application.Quit();
     }
 
 }

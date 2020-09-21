@@ -45,6 +45,11 @@ public class Ship : MonoBehaviour
     void Update()
     {
         switchCamera();
+        if (transform.position.x >= 10.0f || transform.position.x <= -10.0f)
+        {
+            Global g = GameObject.Find("GlobalObject").GetComponent<Global>();
+            g.isGameover = true;
+        }
     }
 
     void FixedUpdate()

@@ -24,7 +24,7 @@ public class Alien1 : MonoBehaviour
     {
         GameObject obj = GameObject.Find("GlobalObject");
         g = obj.GetComponent<Global>();
-        MoveVerticallyPeriod -= (float)g.level * 0.2f;
+        MoveHorizontallySpeed += (float)g.level * 0.2f;
     }
 
     // Update is called once per frame
