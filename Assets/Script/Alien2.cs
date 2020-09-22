@@ -9,10 +9,12 @@ public class Alien2 : MonoBehaviour
     float PointsPerAlien1 = 20.0f;
     float MoveVerticallySpeed = 1.0f;
     float MoveHorizontallySpeed = 1.0f;
-    float MoveVerticallyPeriod = 7;
+    float MoveVerticallyPeriod = 4.0f;
     float MoveHorizontalPeriod = 1.0f;
     float timerOfVertical;
     float timerOfHorizon;
+
+    float hp = 2;
 
     public GameObject alien1;
     public GameObject aliendie;
@@ -29,8 +31,13 @@ public class Alien2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // check whether enter the bottom
+        // Check
+        if(hp == 0)
+        {
+            Die();
+        }
 
+        // check whether enter the bottom
         if (-5.0f > transform.position.z)
         {
             print("bottom");
@@ -71,6 +78,7 @@ public class Alien2 : MonoBehaviour
             ls.Die();
             Rigidbody rb = gameObject.GetComponent<Rigidbody>();
             rb.velocity = new Vector3(0.0F, 0.0f, 10.0f);
+            hp--;
             // Destroy the Bullet which collided with the Asteroid
             /*
             Rigidbody rigidbodyOld = gameObject.GetComponent<Rigidbody>();

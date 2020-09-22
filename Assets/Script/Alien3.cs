@@ -9,11 +9,12 @@ public class Alien3 : MonoBehaviour
     float PointsPerAlien1 = 30.0f;
     float MoveVerticallySpeed = 1.0f;
     float MoveHorizontallySpeed = 1.0f;
-    float MoveVerticallyPeriod = 7;
+    float MoveVerticallyPeriod = 4.0f;
     float MoveHorizontalPeriod = 1.0f;
     float timerOfVertical;
     float timerOfHorizon;
 
+    float hp = 1;
     Global g;
 
     // Start is called before the first frame update

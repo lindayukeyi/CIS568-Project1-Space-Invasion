@@ -12,7 +12,7 @@ public class Boss : MonoBehaviour
     AudioSource bossSound;
 
     public float life = 20.0f;
-    public float hp;
+    public float mp;
     public float UBValue = 20;
     public float BulletPeriod = 1;
     public float timer;
@@ -21,7 +21,7 @@ public class Boss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        hp = 0;
+        mp = 0;
         timer = 0.0f;
         bossSound = GetComponent<AudioSource>();
         bossSound.Play();
@@ -31,6 +31,7 @@ public class Boss : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
+        
         if (life == 0)
         {
             Die();
@@ -41,14 +42,15 @@ public class Boss : MonoBehaviour
             return;
         }
 
-        if (gameObject != null && hp >= UBValue)
+        if (gameObject != null && mp >= UBValue)
         {
-            hp = 0;
+            mp = 0;
             isScale = false;
             UB();
+            UBValue -= 2;
             transform.localScale -= new Vector3(0.2f, 0.2f, 0.2f);
         }
-        if (!isScale && hp >= UBValue - 6)
+        if (!isScale && mp >= UBValue - 6)
         {
             isScale = true;
             transform.localScale += new Vector3(0.2f, 0.2f, 0.2f);
@@ -75,7 +77,7 @@ public class Boss : MonoBehaviour
         if(collider.CompareTag("LaserFromShip"))
         {
             life -= 5.0f;
-            hp += 6.0f;
+            mp += 6.0f;
             LaserFromShip ls = collider.GetComponent<LaserFromShip>();
             ls.Die();
         }
@@ -84,7 +86,9 @@ public class Boss : MonoBehaviour
     private void UB()
     {
         AudioSource.PlayClipAtPoint(ubSound, gameObject.transform.position);
-        for (float x = -3.0f; x <= 3.0; x += 2.5f)
+        Global g = GameObject.Find("GlobalObject").GetComponent<Global>();
+        float distance = 2.5f - g.level * 0.2f;
+        for (float x = -3.0f; x <= 3.0; x += distance)
         {
             Instantiate(bullet,  new Vector3(transform.position.x + x, 0.0f, transform.position .z - 4.0f), Quaternion.identity);
         }
